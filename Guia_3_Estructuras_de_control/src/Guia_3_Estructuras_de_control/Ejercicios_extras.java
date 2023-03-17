@@ -7,6 +7,7 @@ package Guia_3_Estructuras_de_control;
 
 import java.util.Scanner;
 
+
 /**
  *
  * @author bruno
@@ -16,7 +17,22 @@ public class Ejercicios_extras {
     public static void main(String[] args) {
 
         Scanner leer = new Scanner(System.in);
-
+        
+        float minutos;
+        float dia, horas;
+        double _dia, _horas;
+        System.out.println("Ingrese un tiempo en minutos");
+        minutos = leer.nextFloat();
+        
+        horas = minutos/60;
+        System.out.println(horas);
+        _horas = Math.floor(horas);
+        System.out.println(_horas);
+        dia = horas/24;
+        System.out.println(dia);
+        _dia = Math.floor(dia);
+        System.out.println(_dia);
+        System.out.println("El tiempo ingresado es: " + _dia + " días y " + (_horas%24) + " horas" );
         //Ejercicio 9
         
         /*

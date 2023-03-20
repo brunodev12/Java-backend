@@ -20,20 +20,23 @@ public class ejercicio_2_extra {
         int[] vectorB = new int[3];
         int n = 0;
 
-        for (int i = 0; i < 3; i++) {
-            vectorA[i] = (int) (Math.random() * 2);
-            vectorB[i] = (int) (Math.random() * 2);
-            if (vectorA[i] != vectorB[i]) {
-                break;
-            } else {
-                n++;
+        do {
+            for (int i = 0; i < 3; i++) {
+                vectorA[i] = (int) (Math.random() * 2);
+                vectorB[i] = (int) (Math.random() * 2);
+                if (vectorA[i] != vectorB[i]) {
+                    break;
+                } else {
+                    n++;
+                }
             }
-        }
-        if (n == 3) {
-            System.out.println("Los vectores son iguales");
-        } else {
-            System.out.println("Los vectores no son iguales");
-        }
+            if (n == 3) {
+                System.out.println("Los vectores son iguales");
+            } else {
+                System.out.println("Los vectores no son iguales");
+            }
+        } while (n!=3);
+
     }
 
 }

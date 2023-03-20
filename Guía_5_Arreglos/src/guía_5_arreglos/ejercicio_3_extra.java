@@ -29,7 +29,6 @@ public class ejercicio_3_extra {
         vector = llenar(n);
         
         mostrar(vector, n);
-        
     }
 
     public static int[] llenar(int n) {

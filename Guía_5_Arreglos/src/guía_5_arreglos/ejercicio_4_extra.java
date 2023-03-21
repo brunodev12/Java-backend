@@ -39,7 +39,7 @@ public class ejercicio_4_extra {
         
         for (int i = 0; i < 10; i++) {
             if (notas[i]>=7) {
-                System.out.println("El alumno " + i + " aprobó");
+                System.out.println("El alumno " + i + " aprobó con " + notas[i]);
             } else{
                 System.out.println("El alumno " + i + " no aprobó");}
         }

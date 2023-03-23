@@ -11,7 +11,7 @@ import guia_7_poo.newpackage.Libro;
  *
  * @author bruno
  */
-public class Guia_7_POO {
+public class Ejercicio_1 {
 
     /**
      * @param args the command line arguments
@@ -21,7 +21,11 @@ public class Guia_7_POO {
         
         Libro harryTopper = new Libro(232, "La orden de las zapas", "Topper", 320);
         
-        System.out.println(harryTopper.autor + " " + harryTopper.titulo);
+        harryTopper.setAutor("Adidas");
+        
+        System.out.println(harryTopper.getAutor() + " " + harryTopper.getTitulo());
+        
+        System.out.println(harryTopper);
     }
     
 }

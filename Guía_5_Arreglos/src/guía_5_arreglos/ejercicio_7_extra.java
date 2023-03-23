@@ -20,8 +20,7 @@ public class ejercicio_7_extra {
         Scanner leer = new Scanner(System.in);
         int N = leer.nextInt();
         int[] vector = new int[N];
-        
-        
+
         for (int i = 0; i < N; i++) {
             if (i <= 1) {
                 vector[i] = 1;

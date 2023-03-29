@@ -31,8 +31,9 @@ public class Ejercicio_4_extra {
         }
         
         //cocina.getRecetas();
-        //cocina.setIngredientes();
+        cocina.setIngredientes();
         cocina.buscarReceta("asado");
+        cocina.buscarIngredientes("papas", "cebollas", "pollo");
     }
     
 }

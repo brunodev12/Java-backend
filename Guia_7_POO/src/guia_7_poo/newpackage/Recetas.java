@@ -29,11 +29,23 @@ public class Recetas {
         }
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public void getIngredientes() {
         System.out.println("La receta " + nombre + " contiene los ingredientes:");
         for (int i = 0; i < 3; i++) {
             System.out.println(this.ingredientes[i]);
         }
     }
-
+    
+    public boolean buscarIng(String _ingre){
+        for (int i = 0; i < 3; i++) {
+            if (this.ingredientes[i].equalsIgnoreCase(_ingre)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

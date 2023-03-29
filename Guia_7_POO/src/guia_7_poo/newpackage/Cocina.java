@@ -13,10 +13,12 @@ public class Cocina {
 
     private int n;
     private String[] arregloRecetas;
+    private Recetas[] arregloClase;
 
     public Cocina(int n) {
         this.n = n;
         arregloRecetas = new String[n];
+        arregloClase = new Recetas[n];
     }
 
     public void setRecetas(String _nombre, int posicion) {
@@ -30,19 +32,33 @@ public class Cocina {
     }
 
     public void setIngredientes() {
-        Recetas pollo = new Recetas(this.arregloRecetas[0]);
-        pollo.setIngre();
-        pollo.getIngredientes();
+        for (int i = 0; i < n; i++) {
+            Recetas _receta = new Recetas(this.arregloRecetas[i]);
+            _receta.setIngre();
+            //_receta.getIngredientes();
+            arregloClase[i] = _receta;
+        }
     }
 
     public void buscarReceta(String _nombre) {
         for (int i = 0; i < n; i++) {
             if (this.arregloRecetas[i].equalsIgnoreCase(_nombre)) {
                 System.out.println("Se ha encontrado la receta en la posición: " + (i));
+                break;
             } else {
                 System.out.println("No se encontró la receta");
             }
         }
+    }
+
+    public void buscarIngredientes(String _ing1, String _ing2, String _ing3) {
+        for (int i = 0; i < n; i++) {
+            if (arregloClase[i].buscarIng(_ing1) && arregloClase[i].buscarIng(_ing2) && arregloClase[i].buscarIng(_ing3)) {
+                arregloClase[i].getIngredientes();
+                break;
+            }
+        }
+        System.out.println("No se ha encontrado una receta con esos ingredientes");
     }
 
 }

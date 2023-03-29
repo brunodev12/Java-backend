@@ -41,24 +41,29 @@ public class Cocina {
     }
 
     public void buscarReceta(String _nombre) {
+        boolean check = false;
         for (int i = 0; i < n; i++) {
             if (this.arregloRecetas[i].equalsIgnoreCase(_nombre)) {
-                System.out.println("Se ha encontrado la receta en la posición: " + (i));
-                break;
-            } else {
-                System.out.println("No se encontró la receta");
+                System.out.println("Se ha encontrado la receta " + _nombre + " en la posición: " + (i));
+                check = true;
             }
+        }
+        if (check == false) {
+            System.out.println("No se ha encontrado la receta");
         }
     }
 
     public void buscarIngredientes(String _ing1, String _ing2, String _ing3) {
+        boolean check = false;
         for (int i = 0; i < n; i++) {
             if (arregloClase[i].buscarIng(_ing1) && arregloClase[i].buscarIng(_ing2) && arregloClase[i].buscarIng(_ing3)) {
                 arregloClase[i].getIngredientes();
-                break;
+                check = true;
             }
         }
-        System.out.println("No se ha encontrado una receta con esos ingredientes");
+        if (check == false) {
+            System.out.println("No se ha encontrado una receta con esos ingredientes");
+        }
     }
 
 }

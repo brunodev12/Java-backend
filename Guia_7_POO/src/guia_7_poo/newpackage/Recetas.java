@@ -15,8 +15,8 @@ public class Recetas {
 
     Scanner leer = new Scanner(System.in);
 
-    private String nombre;
-    private String[] ingredientes = new String[3];
+    private final String nombre;
+    private final String[] ingredientes = new String[3];
 
     public Recetas(String nombre) {
         this.nombre = nombre;

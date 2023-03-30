@@ -11,9 +11,9 @@ package guia_7_poo.newpackage;
  */
 public class Cocina {
 
-    private int n;
-    private String[] arregloRecetas;
-    private Recetas[] arregloClase;
+    private final int n;
+    private final String[] arregloRecetas;
+    private final Recetas[] arregloClase;
 
     public Cocina(int n) {
         this.n = n;

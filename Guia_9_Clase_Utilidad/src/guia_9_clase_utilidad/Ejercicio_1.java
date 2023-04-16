@@ -26,7 +26,7 @@ public class Ejercicio_1 {
         System.out.println("Ingrese una frase: ");
         Cadena nuevaFrase = new Cadena(leer.next());
         
-        //servicioFrase.mostrarVocales(nuevaFrase);
+//        servicioFrase.mostrarVocales(nuevaFrase);
 //        servicioFrase.invertirFrase(nuevaFrase);
 //        System.out.print("Ingrese un caracter: ");
 //        servicioFrase.vecesRepetido(nuevaFrase, leer.next());
@@ -42,5 +42,4 @@ public class Ejercicio_1 {
         boolean valor = servicioFrase.contiene(nuevaFrase, leer.next());
         System.out.println("La frase contiene el caracter? " + valor);
     }
-    
 }

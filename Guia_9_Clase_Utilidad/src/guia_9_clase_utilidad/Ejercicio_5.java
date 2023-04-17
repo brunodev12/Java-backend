@@ -6,6 +6,8 @@
 package guia_9_clase_utilidad;
 
 import entidades.Persona;
+import java.util.Date;
+import java.util.Scanner;
 import servicio.PersonaService;
 
 /**
@@ -19,6 +21,7 @@ public class Ejercicio_5 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner leer = new Scanner(System.in).useDelimiter("\n");
         
         PersonaService personaServicio = new PersonaService();
         
@@ -27,7 +30,12 @@ public class Ejercicio_5 {
         System.out.println(persona.getNombre());
         System.out.println(persona.getFechaNacimiento());
         
-        personaServicio.calcularEdad(persona);
+        System.out.println("La edad es: " + personaServicio.calcularEdad(persona));
+        
+        System.out.println("Ingrese una edad: ");
+        Date edad = new Date((leer.nextInt()+1900),1,1);
+        System.out.println(edad.getYear());
+        System.out.println("La persona es menor que: " + personaServicio.menorQue(persona, edad));
     }
     
 }

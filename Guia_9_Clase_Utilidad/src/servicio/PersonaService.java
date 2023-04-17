@@ -26,10 +26,16 @@ public class PersonaService {
         return new Persona(nombre, fechaNacimiento);
     }
     
-    public void calcularEdad(Persona _persona){
+    public int calcularEdad(Persona _persona){
         Date _fechaActual = fechaServicio.fechaActual();
         Date edad = fechaServicio.diferencia(_persona.getFechaNacimiento(), _fechaActual);
-        System.out.println("La edad es: " + edad.getYear());
+        return edad.getYear();
+    }
+    
+    public boolean menorQue(Persona _persona, Date _edad){
+        int edad = _edad.getYear();
+        Date edadPersona = _persona.getFechaNacimiento();
+        return edadPersona.before(_edad);
     }
     
 }

@@ -32,10 +32,16 @@ public class PersonaService {
         return edad.getYear();
     }
     
-    public boolean menorQue(Persona _persona, Date _edad){
-        int edad = _edad.getYear();
-        Date edadPersona = _persona.getFechaNacimiento();
-        return edadPersona.before(_edad);
+    public boolean menorQue(Persona _persona, int _edad){
+        int edadPersona = this.calcularEdad(_persona);
+        return edadPersona<_edad;
+    }
+    
+    public void mostrarPersona(Persona _persona){
+        System.out.println("El nombre de la persona es: " + _persona.getNombre());
+        System.out.println("Su edad es: " + this.calcularEdad(_persona));
+        System.out.println("La fecha de nacimiento de la persona es: " + _persona.getFechaNacimiento());
+        //System.out.println(_persona.toString());
     }
     
 }

@@ -32,10 +32,11 @@ public class Ejercicio_5 {
         
         System.out.println("La edad es: " + personaServicio.calcularEdad(persona));
         
-        System.out.println("Ingrese una edad: ");
-        Date edad = new Date((leer.nextInt()+1900),1,1);
-        System.out.println(edad.getYear());
+        System.out.print("Ingrese una edad: ");
+        int edad = leer.nextInt();
         System.out.println("La persona es menor que: " + personaServicio.menorQue(persona, edad));
+        
+        personaServicio.mostrarPersona(persona);
     }
     
 }

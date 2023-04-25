@@ -6,7 +6,6 @@
 package guia_9_clase_utilidad;
 
 import entidades.Persona;
-import java.util.Date;
 import java.util.Scanner;
 import servicio.PersonaService;
 

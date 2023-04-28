@@ -5,7 +5,6 @@
  */
 package guia_9_clase_utilidad;
 
-import java.io.Console;
 
 /**
  *
@@ -13,29 +12,12 @@ import java.io.Console;
  */
 public class test {
 
-    public void passwordExample() {
-        Console console = System.console();
-        if (console == null) {
-            System.out.println("Couldn't get Console instance");
-            System.exit(0);
-        }
-
-        console.printf("Testing password%n");
-        char[] passwordArray = console.readPassword("Enter your secret password: ");
-        char[] secondPasswordArray = console.readPassword("Enter your secret password again: ");
-
-        if ((new String(passwordArray)).equals(new String(secondPasswordArray))) {
-            System.out.println("ingreso la contraseña de forma correcta");
-        } else {
-            System.err.println("error! debe coincidir las contraseñas");
-        }
-
-    }
-
     public static void main(String[] args) {
         // TODO code application logic here
-        new test().passwordExample();
-
+        
+        for (int i = 2; i <= 128; i *= 2) {
+            System.out.println("i " + i);
+        }
     }
 
 }

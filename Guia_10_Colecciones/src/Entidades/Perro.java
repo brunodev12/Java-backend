@@ -5,6 +5,8 @@
  */
 package Entidades;
 
+import java.util.Comparator;
+
 /**
  *
  * @author bruno
@@ -25,5 +27,7 @@ public class Perro {
     public String getRaza() {
         return raza;
     }
-     
+    
+    public static Comparator<Perro> compararNombre = (Perro p1, Perro p2) -> p1.getNombre().compareTo(p2.getNombre());
+    
 }

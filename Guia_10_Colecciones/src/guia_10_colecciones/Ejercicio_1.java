@@ -5,9 +5,7 @@
  */
 package guia_10_colecciones;
 
-import Entidades.Perro;
 import Servicio.PerroServicio;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -37,6 +35,9 @@ public class Ejercicio_1 {
         
         PS.mostrarPerro();
         
+        PS.quitarPerro();
+        
+        PS.mostrarPerro();
         
         
     }

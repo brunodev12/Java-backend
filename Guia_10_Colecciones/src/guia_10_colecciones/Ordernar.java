@@ -5,8 +5,8 @@
  */
 package guia_10_colecciones;
 
-import Entidades.Alumno;
-import Entidades.Libro;
+import Entidades.AlumnoTest;
+import Entidades.LibroTest;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -71,26 +71,26 @@ public class Ordernar {
 //        for (Map.Entry<Integer, String> elemento : alumnosTree.entrySet()) {
 //            System.out.println("Edad: " + elemento.getKey() + " - Nombre: " + elemento.getValue());
 //        }
-        HashMap<Integer, Alumno> alumnosMap = new HashMap();
-        Alumno alumno1 = new Alumno("Pepe", "Honguito", 35487521);
-        Alumno alumno2 = new Alumno("Jimmy", "Rockson", 23547124);
-        Alumno alumno3 = new Alumno("Roberto", "Carlos", 27845135);
-        Alumno alumno4 = new Alumno("Wancho", "Dios", 31245789);
-        Alumno alumno5 = new Alumno("Angel", "Di Maria", 43127239);
+        HashMap<Integer, AlumnoTest> alumnosMap = new HashMap();
+        AlumnoTest alumno1 = new AlumnoTest("Pepe", "Honguito", 35487521);
+        AlumnoTest alumno2 = new AlumnoTest("Jimmy", "Rockson", 23547124);
+        AlumnoTest alumno3 = new AlumnoTest("Roberto", "Carlos", 27845135);
+        AlumnoTest alumno4 = new AlumnoTest("Wancho", "Dios", 31245789);
+        AlumnoTest alumno5 = new AlumnoTest("Angel", "Di Maria", 43127239);
         alumnosMap.put(alumno1.getDni(), alumno1);
         alumnosMap.put(alumno2.getDni(), alumno2);
         alumnosMap.put(alumno3.getDni(), alumno3);
         alumnosMap.put(alumno4.getDni(), alumno4);
         alumnosMap.put(alumno5.getDni(), alumno5);
-        ArrayList<Alumno> alumnosLista = new ArrayList(alumnosMap.values());
+        ArrayList<AlumnoTest> alumnosLista = new ArrayList(alumnosMap.values());
         
-        for (Map.Entry<Integer, Alumno> elemento : alumnosMap.entrySet()) {
+        for (Map.Entry<Integer, AlumnoTest> elemento : alumnosMap.entrySet()) {
             System.out.println("DNI: " + elemento.getKey() + " - Objeto: " + elemento.getValue());
         }
         
-        alumnosLista.sort(Alumno.compararDni);
+        alumnosLista.sort(AlumnoTest.compararDni);
         
-        for (Alumno alumno : alumnosLista) {
+        for (AlumnoTest alumno : alumnosLista) {
             System.out.println(alumno);
         }
         

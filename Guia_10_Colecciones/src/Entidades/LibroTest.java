@@ -11,12 +11,12 @@ import java.util.Comparator;
  *
  * @author bruno
  */
-public class Libro {
+public class LibroTest {
 
     private final String nombre;
     private final Integer numeroCopia;
 
-    public Libro(String nombre, Integer numeroCopia) {
+    public LibroTest(String nombre, Integer numeroCopia) {
         this.nombre = nombre;
         this.numeroCopia = numeroCopia;
     }
@@ -42,6 +42,6 @@ public class Libro {
 //
 //    };
 
-    public static Comparator<Libro> compararCopias = (Libro L1, Libro L2) -> L1.getNumeroCopia().compareTo(L2.getNumeroCopia());
+    public static Comparator<LibroTest> compararCopias = (LibroTest L1, LibroTest L2) -> L1.getNumeroCopia().compareTo(L2.getNumeroCopia());
 
 }

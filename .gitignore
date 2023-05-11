@@ -15,3 +15,6 @@ Integrador/
 /mascotaapp/target/
 UMLDiagrams/
 *.xml
+/Guia_11_Ejercicio_1/build/
+/Guia_11_Ejercicio_2/build/
+*.rar

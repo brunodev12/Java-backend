@@ -41,6 +41,7 @@ public class Televisor extends Electrodomestico {
     }
 
     public void crearTelevisor() {
+        System.out.println("---Televisor---");
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         System.out.print("Ingrese la resolucion (pulgadas): ");
         this.resolucion = leer.nextFloat();
@@ -67,4 +68,8 @@ public class Televisor extends Electrodomestico {
         return "---Televisor---" + "\nPrecio=" + precio + "\nColor=" + color + "\nConsumo energetico=" + consumoEnergetico + "\nPeso=" + peso + "\nResolucion=" + resolucion + "\nSintonizador=" + sintonizador;
     }
 
+    @Override
+    public void mostrarPrecio() {
+        System.out.println("---Televisor---" + "\n Precio=" + precio);
+    }
 }

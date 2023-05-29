@@ -146,4 +146,7 @@ public class Electrodomestico {
         return "---Electrodomestico---" + "\nPrecio=" + precio + "\nColor=" + color + "\nConsumo energetico=" + consumoEnergetico + "\nPeso=" + peso;
     }
 
+    public void mostrarPrecio() {
+        System.out.println("---Electrodomestico---" + "\n Precio=" + precio);
+    }
 }

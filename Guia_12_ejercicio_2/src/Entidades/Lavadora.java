@@ -30,6 +30,7 @@ public class Lavadora extends Electrodomestico{
     }
     
     public void crearLavadora(){
+        System.out.println("---Lavadora---");
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
         System.out.print("Ingrese la carga (kg): ");
         int _carga = leer.nextInt();
@@ -51,4 +52,8 @@ public class Lavadora extends Electrodomestico{
         return "---Lavadora---" + "\nPrecio=" + precio + "\nColor=" + color + "\nConsumo energetico=" + consumoEnergetico + "\nPeso=" + peso + "\nCarga=" + carga;
     }
     
+    @Override
+    public void mostrarPrecio(){
+        System.out.println("---Lavadora---" + "\n Precio=" + precio);
+    }
 }

@@ -4,6 +4,9 @@
  */
 package guia_12_ejercicio_4;
 
+import Entidades.Circulo;
+import Entidades.Rectangulo;
+
 /**
  *
  * @author bruno
@@ -16,7 +19,17 @@ public class Guia_12_ejercicio_4 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        // probando
+        Circulo circulo = new Circulo(5);
+        Rectangulo rectangulo = new Rectangulo(2, 2);
+        circulo.calcularArea();
+        circulo.calcularPerimetro();
+        rectangulo.calcularArea();
+        rectangulo.calcularPerimetro();
+        
+        System.out.println("Area circulo: " + circulo.getArea());
+        System.out.println("Perimetro circulo: " + circulo.getPerimetro());
+        System.out.println("Area rectangulo: " + rectangulo.getArea());
+        System.out.println("Perimetro rectangulo: " + rectangulo.getPerimetro());
     }
     
 }

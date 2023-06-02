@@ -30,7 +30,7 @@ public class Guia_12_ejercicio_3_extra {
         Hotel hotel2 = new Hotel5(true, "Wembley", 50, 2, 4, 3, TipoGimnasio.A, 30, 5, 10, "Ros Tower", "Mitre 355", "Rosario", "Mike Tower");
         Hotel hotel3 = new Hotel4(false, "Sarkis", 10, TipoGimnasio.B, 3, 3, 2, "El cairo", "Entre rios 528", "Ceres", "Roberto Carlos");
         Hotel hotel4 = new Hotel5(true, "Manchester", 30, 0, 1, 1, TipoGimnasio.B, 15, 4, 5, "Paradise Inn", "Laprida 2541", "Buenos Aires", "Pulga Rodriguez");
-        ExtraHotel extrahotel1 = new Camping(40, 5, true, true, 50000, "Laguna El Cristal", "Estancia La Angelita", "Calchaqui", "Marcelo Rossini");
+        ExtraHotel extrahotel1 = new Camping(40, 5, true, true, 50000, "Laguna El Cristal", "Estancia La Angelita", "Reconquista", "Marcelo Rossini");
         ExtraHotel extrahotel2 = new Camping(20, 0, false, false, 12000, "Camping de Seros", "Murillo 123", "Rawson", "Pablo Sanchez");
         ExtraHotel extrahotel3 = new Residencia(6, true, true, true, 10000, "Los Olivos", "Ituzaingo 647", "Gobernador Crespo", "Pablo Perez");
         ExtraHotel extrahotel4 = new Residencia(3, false, false, false, 5000, "La Gallega", "Presidente Roca 783", "San Justo", "Daiana Cucaracha Ramirez");

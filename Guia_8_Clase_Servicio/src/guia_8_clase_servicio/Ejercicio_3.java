@@ -31,10 +31,18 @@ public class Ejercicio_3 {
         int pesoIdeal = 0;
         int sobrePeso = 0;
         Scanner leer = new Scanner(System.in);
-
+        
         do {
             System.out.println("Ingrese los datos para la persona " + cont);
             Persona persona = ps.crearPersona();
+//            Persona persona = null;
+//            try {
+//                persona.getNombre();
+//            } catch (NullPointerException e) {
+//                System.out.println(e);
+//                System.out.println("Ha ingresado un objeto nulo");
+//                persona = ps.crearPersona();
+//            }
             listaPersonas.add(persona);
             opcion = validarOpcion(leer);
             cont++;
@@ -46,6 +54,7 @@ public class Ejercicio_3 {
         for (int i = 0; i < totalPersonas; i++) {
             Persona _persona = listaPersonas.get(i);
             String nombre = _persona.getNombre();
+
             int edad = _persona.getEdad();
 
             System.out.println("========================= " + nombre + " =========================");

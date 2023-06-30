@@ -33,9 +33,10 @@ public class prueba {
 //                System.out.println("Fuera de rango");
 //            }
 //        }
-        
-        System.out.println(cancion.getCanciones(-1));
 
+
+        System.out.println(cancion.getCanciones(-1));
+        System.out.println("Hola");
 //ArrayIndexOutOfBoundsException
     }
 

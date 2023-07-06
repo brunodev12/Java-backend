@@ -43,10 +43,6 @@ public class LibroServicio {
 
     private Autor seleccionarAutor() {
         AutorJpaController autorDao = new AutorJpaController();
-
-//        System.out.println("Ingrese el nombre del autor a buscar");
-//        String nombre = leer.next();
-//        List<Autor> autores = autorDao.findAutorByName(nombre);
         List<Autor> autores = autorDao.findAutorEntities();
 
         for (Autor item : autores) {
@@ -57,6 +53,17 @@ public class LibroServicio {
         Integer id = leer.nextInt();
         Autor autor = autorDao.findAutor(id);
 
+        return autor;
+    }
+
+    private Autor seleccionarAutorPorNombre() {
+        AutorJpaController autorDao = new AutorJpaController();
+
+        System.out.println("Ingrese el nombre del autor a buscar");
+        String nombre = leer.next();
+        List<Autor> autores = autorDao.findAutorByName(nombre);
+//        Autor autor;
+//
 //        if (autores.size() > 1) {
 //            for (Autor item : autores) {
 //                System.out.println(item);
@@ -69,31 +76,18 @@ public class LibroServicio {
 //        } else {
 //            return autores.get(0);
 //        }
-        return autor;
+
+        return autores.get(0);
     }
 
-    private Autor seleccionarAutorPorNombre() {
-        AutorJpaController autorDao = new AutorJpaController();
+    private Editorial seleccionarEditorialPorNombre() {
+        EditorialJpaController editorialDao = new EditorialJpaController();
 
-        System.out.println("Ingrese el nombre del autor a buscar");
+        System.out.println("Ingrese el nombre de la editorial a buscar");
         String nombre = leer.next();
-        List<Autor> autores = autorDao.findAutorByName(nombre);
-        Autor autor;
+        List<Editorial> editoriales = editorialDao.findEditorialByName(nombre);
 
-        if (autores.size() > 1) {
-            for (Autor item : autores) {
-                System.out.println(item);
-            }
-
-            System.out.println("Ingrese el ID del autor: ");
-            Integer id = leer.nextInt();
-            autor = autorDao.findAutor(id);
-
-        } else {
-            return autores.get(0);
-        }
-
-        return autor;
+        return editoriales.get(0);
     }
 
     private Editorial seleccionarEditorial() {
@@ -139,10 +133,29 @@ public class LibroServicio {
             nombre = seleccionarAutorPorNombre().getNombre();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("No se ha encontrado autores con ese nombre");
-            
+
         }
 
         List<Libro> libros = libroDao.findLibroByAutorName(nombre);
+
+        for (Libro libro : libros) {
+            System.out.println(libro);
+        }
+        if (libros.isEmpty()) {
+            System.out.println("No se ha encontrado libros con ese titulo");
+        }
+    }
+
+    public void buscarLibroPorNombreEditorial() {
+        String nombre = null;
+        try {
+            nombre = seleccionarEditorialPorNombre().getNombre();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("No se ha encontrado editoriales con ese nombre");
+
+        }
+
+        List<Libro> libros = libroDao.findLibroByEditorialName(nombre);
 
         for (Libro libro : libros) {
             System.out.println(libro);

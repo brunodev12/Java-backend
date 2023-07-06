@@ -4,6 +4,7 @@
  */
 package Persistencia;
 
+import Entidades.Editorial;
 import Entidades.Libro;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
@@ -165,6 +166,20 @@ public class LibroJpaController implements Serializable {
         }
 
         return libros;
+    }
+
+    public List<Libro> findLibroByEditorialName(String name) {
+        EntityManager em = getEntityManager();
+        List<Libro> editoriales = null;
+
+        try {
+            Query query = em.createQuery("SELECT a FROM Libro a WHERE a.editorial.nombre LIKE :name").setParameter("name", "%" + name + "%");
+            editoriales = query.getResultList();
+        } finally {
+            em.close();
+        }
+
+        return editoriales;
     }
 
 }

@@ -135,4 +135,18 @@ public class EditorialJpaController implements Serializable {
         }
     }
 
+    public List<Editorial> findEditorialByName(String name) {
+        EntityManager em = getEntityManager();
+        List<Editorial> editoriales = null;
+
+        try {
+            Query query = em.createQuery("SELECT a FROM Editorial a WHERE a.nombre LIKE :name").setParameter("name", "%" + name + "%");
+            editoriales = query.getResultList();
+        } finally {
+            em.close();
+        }
+
+        return editoriales;
+    }
+
 }

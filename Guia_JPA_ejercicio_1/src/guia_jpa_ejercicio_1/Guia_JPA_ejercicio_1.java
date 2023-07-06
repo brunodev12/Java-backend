@@ -18,10 +18,11 @@ public class Guia_JPA_ejercicio_1 {
         LibroServicio libroService = new LibroServicio();
 //        
 //        libroService.crearLibro();
-//        libroService.buscarLibros();
+        libroService.buscarLibros();
         
 //        libroService.buscarLibroPorTitulo();
-        libroService.buscarLibroPorNombreAutor();
+//        libroService.buscarLibroPorNombreAutor();
+        libroService.buscarLibroPorNombreEditorial();
 //        libroService.eliminarLibro();
 //        libroService.buscarLibros();
         

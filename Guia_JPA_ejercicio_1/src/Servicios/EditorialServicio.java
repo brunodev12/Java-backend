@@ -21,12 +21,18 @@ public class EditorialServicio {
 
     }
 
-    public Editorial buscarEditorial() {
+    public void buscarEditorial() {
         System.out.println("Ingrese el codigo de la editorial: ");
         Integer id = leer.nextInt();
 
         Editorial editorial = editorialDao.findEditorial(id);
-        return editorial;
+        
+        if (editorial != null) {
+            System.out.println(editorial);
+        } else {
+            System.out.println("No existe esa editorial");
+        }
+        
     }
 
     public void buscarEditoriales() {

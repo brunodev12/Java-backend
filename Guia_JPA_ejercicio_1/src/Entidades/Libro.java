@@ -21,6 +21,7 @@ public class Libro implements Serializable {
     private Boolean alta;
 
     public Libro() {
+        this.isbn = generateRandomNumber();
     }
 
     public Libro(String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Autor autor, Editorial editorial) {

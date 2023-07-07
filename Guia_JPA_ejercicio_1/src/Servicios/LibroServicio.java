@@ -37,7 +37,15 @@ public class LibroServicio {
             throw new Exception("Editorial no encontrada");
         }
 
-        Libro libro = new Libro(titulo, anio, ejemplares, ejemplaresPrestados, autor, editorial);
+        Libro libro = null;
+        Libro libro2;
+        
+        do {
+            libro = new Libro(titulo, anio, ejemplares, ejemplaresPrestados, autor, editorial);
+            libro2 = buscarLibro(libro.getIsbn());
+            
+        } while (libro2 != null);
+        
         libroDao.create(libro);
     }
 
@@ -106,10 +114,22 @@ public class LibroServicio {
         return editorial;
     }
 
-    public Libro buscarLibro() {
+    public void buscarLibro() {
         System.out.println("Ingrese el isbn del libro: ");
         long isbn = leer.nextLong();
 
+        Libro libro = libroDao.findLibro(isbn);
+        
+        if (libro != null) {
+            System.out.println(libro);
+        } else {
+            System.out.println("No existe ese libro");
+        }
+        
+    }
+
+    private Libro buscarLibro(long isbn) {
+//        System.out.println("Buscando libro...");
         Libro libro = libroDao.findLibro(isbn);
         return libro;
     }

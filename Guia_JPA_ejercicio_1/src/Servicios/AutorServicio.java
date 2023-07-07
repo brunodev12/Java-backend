@@ -32,12 +32,18 @@ public class AutorServicio {
         return autor;
     }
 
-    public Autor buscarAutor() {
+    public void buscarAutor() {
         System.out.println("Ingrese el codigo del autor: ");
         Integer id = leer.nextInt();
 
         Autor autor = autorDao.findAutor(id);
-        return autor;
+        
+        if (autor != null) {
+            System.out.println(autor);
+        } else {
+            System.out.println("No existe ese autor");
+        }
+        
     }
 
     public void buscarAutores() {

@@ -1,7 +1,6 @@
 package Persistencia;
 
-import Entidades.Editorial;
-import Entidades.Libro;
+import Entidades.Prestamo;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -13,18 +12,14 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author bruno
- */
-public class LibroJpaController implements Serializable {
+public class PrestamoJpaController implements Serializable {
 
-    public LibroJpaController(EntityManagerFactory emf) {
+    public PrestamoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
-
-    public LibroJpaController() {
+    
+    public PrestamoJpaController() {
         emf = Persistence.createEntityManagerFactory("Guia_JPA_ejercicio_1PU");
     }
 
@@ -32,12 +27,12 @@ public class LibroJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Libro libro) {
+    public void create(Prestamo prestamo) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(libro);
+            em.persist(prestamo);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +41,19 @@ public class LibroJpaController implements Serializable {
         }
     }
 
-    public void edit(Libro libro) throws NonexistentEntityException, Exception {
+    public void edit(Prestamo prestamo) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            libro = em.merge(libro);
+            prestamo = em.merge(prestamo);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = libro.getIsbn();
-                if (findLibro(id) == null) {
-                    throw new NonexistentEntityException("The libro with id " + id + " no longer exists.");
+                Integer id = prestamo.getId();
+                if (findPrestamo(id) == null) {
+                    throw new NonexistentEntityException("The prestamo with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -69,19 +64,19 @@ public class LibroJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Libro libro;
+            Prestamo prestamo;
             try {
-                libro = em.getReference(Libro.class, id);
-                libro.getIsbn();
+                prestamo = em.getReference(Prestamo.class, id);
+                prestamo.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The libro with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The prestamo with id " + id + " no longer exists.", enfe);
             }
-            em.remove(libro);
+            em.remove(prestamo);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +85,19 @@ public class LibroJpaController implements Serializable {
         }
     }
 
-    public List<Libro> findLibroEntities() {
-        return findLibroEntities(true, -1, -1);
+    public List<Prestamo> findPrestamoEntities() {
+        return findPrestamoEntities(true, -1, -1);
     }
 
-    public List<Libro> findLibroEntities(int maxResults, int firstResult) {
-        return findLibroEntities(false, maxResults, firstResult);
+    public List<Prestamo> findPrestamoEntities(int maxResults, int firstResult) {
+        return findPrestamoEntities(false, maxResults, firstResult);
     }
 
-    private List<Libro> findLibroEntities(boolean all, int maxResults, int firstResult) {
+    private List<Prestamo> findPrestamoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Libro.class));
+            cq.select(cq.from(Prestamo.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +109,20 @@ public class LibroJpaController implements Serializable {
         }
     }
 
-    public Libro findLibro(Long id) {
+    public Prestamo findPrestamo(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Libro.class, id);
+            return em.find(Prestamo.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getLibroCount() {
+    public int getPrestamoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Libro> rt = cq.from(Libro.class);
+            Root<Prestamo> rt = cq.from(Prestamo.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -135,47 +130,33 @@ public class LibroJpaController implements Serializable {
             em.close();
         }
     }
-
-    public List<Libro> findLibroByName(String name) {
+    
+    public List<Prestamo> findPrestamoByLibroIsbn(long isbn) {
         EntityManager em = getEntityManager();
-        List<Libro> libros = null;
+        List<Prestamo> prestamos = null;
 
         try {
-            Query query = em.createQuery("SELECT a FROM Libro a WHERE a.titulo LIKE :name").setParameter("name", "%" + name + "%");
-            libros = query.getResultList();
+            Query query = em.createQuery("SELECT p FROM Prestamo p WHERE p.libro.isbn = :isbn").setParameter("isbn", isbn);
+            prestamos = query.getResultList();
         } finally {
             em.close();
         }
 
-        return libros;
+        return prestamos;
     }
-
-    public List<Libro> findLibroByAutorName(String name) {
+    
+    public List<Prestamo> findPrestamoByCliente(int id) {
         EntityManager em = getEntityManager();
-        List<Libro> libros = null;
+        List<Prestamo> prestamos = null;
 
         try {
-            Query query = em.createQuery("SELECT a FROM Libro a WHERE a.autor.nombre LIKE :name").setParameter("name", "%" + name + "%");
-            libros = query.getResultList();
+            Query query = em.createQuery("SELECT p FROM Prestamo p WHERE p.cliente.id = :id").setParameter("id", id);
+            prestamos = query.getResultList();
         } finally {
             em.close();
         }
 
-        return libros;
+        return prestamos;
     }
-
-    public List<Libro> findLibroByEditorialName(String name) {
-        EntityManager em = getEntityManager();
-        List<Libro> libros = null;
-
-        try {
-            Query query = em.createQuery("SELECT a FROM Libro a WHERE a.editorial.nombre LIKE :name").setParameter("name", "%" + name + "%");
-            libros = query.getResultList();
-        } finally {
-            em.close();
-        }
-
-        return libros;
-    }
-
+    
 }

@@ -1,8 +1,10 @@
 package guia_jpa_ejercicio_1;
 
 import Servicios.AutorServicio;
+import Servicios.ClienteServicio;
 import Servicios.EditorialServicio;
 import Servicios.LibroServicio;
+import Servicios.PrestamoServicio;
 import java.util.Scanner;
 
 public class Guia_JPA_ejercicio_1 {
@@ -19,6 +21,8 @@ public class Guia_JPA_ejercicio_1 {
         AutorServicio autorService = new AutorServicio();
         EditorialServicio editorialService = new EditorialServicio();
         LibroServicio libroService = new LibroServicio();
+        ClienteServicio clienteService = new ClienteServicio();
+        PrestamoServicio prestamoService = new PrestamoServicio();
 
         int opc;
 
@@ -27,7 +31,9 @@ public class Guia_JPA_ejercicio_1 {
             System.out.println("1. Ingresar al menu Autor ");
             System.out.println("2. Ingresar al menu Editorial ");
             System.out.println("3. Ingresar al menu Libro ");
-            System.out.println("4. Salir");
+            System.out.println("4. Ingresar el menu Cliente");
+            System.out.println("5. Ingresar al menu Prestamo");
+            System.out.println("6. Salir");
             opc = leer.nextInt();
             
             switch(opc){
@@ -41,13 +47,19 @@ public class Guia_JPA_ejercicio_1 {
                     menuLibro(leer, libroService);
                     break;
                 case 4:
+                    menuCliente(leer, clienteService);
+                    break;
+                case 5:
+                    menuPrestamo(leer, prestamoService);
+                    break;
+                case 6:
                     System.out.println("Hasta luego...");
                     break;
                 default:
                     System.out.println("Opcion no valida");
             }
 
-        } while (opc != 4);
+        } while (opc != 6);
     }
 
     public static void menuAutor(Scanner leer, AutorServicio autorService) throws Exception {
@@ -179,6 +191,88 @@ public class Guia_JPA_ejercicio_1 {
                     System.out.println("Opcion no valida");
             }
         } while (opc != 9);
+    }
+    
+    public static void menuCliente(Scanner leer, ClienteServicio clienteService) throws Exception {
+        int opc;
+        do {
+            System.out.println("------------- Bienvenido al submenu Cliente ---------------");
+            System.out.println("1. Crear cliente");
+            System.out.println("2. Buscar cliente ");
+            System.out.println("3. Mostrar clientes");
+            System.out.println("4. Modificar cliente");
+            System.out.println("5. Eliminar cliente");
+            System.out.println("6. Salir");
+            opc = leer.nextInt();
+
+            switch (opc) {
+                case 1:
+                    clienteService.crearCliente();
+                    break;
+                case 2:
+                    clienteService.mostrarCliente();
+                    break;
+                case 3:
+                    clienteService.mostrarClientes();
+                    break;
+                case 4:
+                    clienteService.modificarCliente();
+                    break;
+                case 5:
+                    clienteService.eliminarCliente();
+                    break;
+                case 6:
+                    System.out.println("Usted esta saliendo del submenu Cliente");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+            }
+        } while (opc != 6);
+    }
+    
+    public static void menuPrestamo(Scanner leer, PrestamoServicio prestamoService) throws Exception {
+        int opc;
+        do {
+            System.out.println("------------- Bienvenido al submenu Prestamo ---------------");
+            System.out.println("1. Crear prestamo");
+            System.out.println("2. Buscar prestamo ");
+            System.out.println("3. Mostrar prestamos");
+            System.out.println("4. Mostrar prestamos de un cliente");
+            System.out.println("5. Devolver libro");
+            System.out.println("6. Modificar prestamo");
+            System.out.println("7. Eliminar prestamo");
+            System.out.println("8. Salir");
+            opc = leer.nextInt();
+
+            switch (opc) {
+                case 1:
+                    prestamoService.crearPrestamo();
+                    break;
+                case 2:
+                    prestamoService.mostrarPrestamo();
+                    break;
+                case 3:
+                    prestamoService.mostrarPrestamos();
+                    break;
+                case 4:
+                    prestamoService.mostrarPrestamoPorCliente();
+                    break;
+                case 5:
+                    prestamoService.devolverLibro();
+                    break;
+                case 6:
+                    prestamoService.modificarPrestamo();
+                    break;
+                case 7:
+                    prestamoService.eliminarPrestamo();
+                    break;
+                case 8:
+                    System.out.println("Usted esta saliendo del submenu Prestamo");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+            }
+        } while (opc != 8);
     }
 
 }

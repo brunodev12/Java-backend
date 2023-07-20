@@ -53,7 +53,7 @@ public class PrestamoServicio {
         return cliente;
     }
 
-    private Libro seleccionarLibro() {
+    private Libro seleccionarLibro() throws Exception {
         LibroJpaController libroDao = new LibroJpaController();
         List<Libro> libros = libroDao.findLibroEntities();
 
@@ -70,8 +70,10 @@ public class PrestamoServicio {
                 System.out.println("No hay libros disponibles");
                 libro = null;
             } else {
-                libro.setEjemplaresPrestados(libro.getEjemplaresPrestados() + 1);
+                Integer ejemplaresPrestados = libro.getEjemplaresPrestados() + 1;
+                libro.setEjemplaresPrestados(ejemplaresPrestados);
                 libro.setEjemplaresRestantes();
+                libroDao.edit(libro);
             }
         } catch (NullPointerException e) {
             System.out.println("Libro no encontrado");
@@ -158,7 +160,7 @@ public class PrestamoServicio {
             int id = cliente.getId();
             prestamos = prestamoDao.findPrestamoByCliente(id);
         }
-        
+
         try {
             if (prestamos.size() > 1) {
                 for (Prestamo prestamo : prestamos) {
@@ -221,6 +223,7 @@ public class PrestamoServicio {
     }
 
     public void devolverLibro() throws NonexistentEntityException, Exception {
+        LibroJpaController libroDao = new LibroJpaController();
         System.out.println("Ingrese el isbn del libro que desea devolver");
         mostrarLibrosPrestados();
         long isbn = leer.nextLong();
@@ -236,6 +239,11 @@ public class PrestamoServicio {
             Prestamo prestamo = buscarPrestamo(id);
 
             if (prestamo != null) {
+                Libro libro = prestamo.getLibro();
+                int ejemplaresPrestados = libro.getEjemplaresPrestados() - 1;
+                libro.setEjemplaresPrestados(ejemplaresPrestados);
+                libro.setEjemplaresRestantes();
+                libroDao.edit(libro);
                 prestamoDao.destroy(id);
             } else {
                 throw new Exception("No existe ese prestamo");
@@ -245,9 +253,19 @@ public class PrestamoServicio {
         }
     }
 
-    public void eliminarPrestamo() throws NonexistentEntityException {
+    public void eliminarPrestamo() throws NonexistentEntityException, Exception {
+        LibroJpaController libroDao = new LibroJpaController();
         System.out.println("Ingrese el id del prestamo a eliminar: ");
         Integer id = leer.nextInt();
+        Prestamo prestamo = buscarPrestamo(id);
+
+        if (prestamo != null) {
+            Libro libro = prestamo.getLibro();
+            int ejemplaresPrestados = libro.getEjemplaresPrestados() - 1;
+            libro.setEjemplaresPrestados(ejemplaresPrestados);
+            libro.setEjemplaresRestantes();
+            libroDao.edit(libro);
+        }
 
         prestamoDao.destroy(id);
     }
